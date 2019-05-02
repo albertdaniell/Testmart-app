@@ -6,9 +6,63 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(18, 21, 41);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.navContainer{
+  margin-top: 10px;
+  padding: 0;
+}
+
+.myPanel{
+border-radius: 7px;
+}
+
+
+.p1{
+  background-color: rgb(244, 65, 139);
+}
+
+.p2{
+  background-color: rgb(203, 66, 244);
+}
+
+.p3{
+  background-color: rgb(244, 137, 65);
+}
+  
+.myPanel h3{
+font-size: 20px;padding: 5px;
+
+  }
+
+  .myPanel .spancounter{
+    padding:5px;
+    padding-bottom: 0px;
+    font-size: 30px;
+    color:white;
+    
+  }
+
+  .badge{
+    background-color:rgb(244, 163, 65);
+    border-radius: 4px;
+    font-size: 15px;
+    margin: 10px 10px 0px 0px;
+  }
+.logo{
+  font-size: 20px;
+  background-color: rgb(65, 244, 148);
+  padding: 10px;
+  margin: 10px 10px 0px 0px;
+}
+
+.mainDiv{
+  background-color: white;
+padding: 10px;
 }
