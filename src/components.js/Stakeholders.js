@@ -15,14 +15,97 @@ export default class Stakeholders extends Component {
         this.state = {
             stakeholders: [],
             stakeRole: '',
-            stakeholdersLoaded: false
+            stakeholdersLoaded: false,
+            privateSecNo:'_',
+            mobilepaymentno:'_',
+            adminsno:'_'
         }
     }
 
     componentDidMount() {
 
         this.getStakeholders()
+        this.privateSectorsNo()
+        this.adminsNo()
+        this.MobilePaymentNo()
     }
+
+    privateSectorsNo=()=>{
+
+
+       var ref=db.collection('users')
+
+       var privateSecNo=ref.where("role","==" ,"2")
+
+       privateSecNo.get().then((querySnapshot)=>{
+
+        this.setState({
+            privateSecNo:querySnapshot.size
+        })
+           console.log(querySnapshot.size)
+           querySnapshot.forEach(doc=>{
+
+
+               console.log(doc.data())
+           }).catch(error=>{
+               console.log(error)
+           })
+
+       })
+
+     
+       
+    }
+
+
+    adminsNo=()=>{
+
+
+        var ref=db.collection('users')
+ 
+        var AdminNo=ref.where("role","==" ,"1")
+ 
+        AdminNo.get().then((querySnapshot)=>{
+            this.setState({
+                adminsno:querySnapshot.size
+            })
+            console.log(querySnapshot.size)
+            querySnapshot.forEach(doc=>{
+                console.log(doc.data())
+            }).catch(error=>{
+                console.log(error)
+            })
+ 
+        })
+ 
+      
+        
+     }
+
+
+    MobilePaymentNo=()=>{
+
+
+        var ref=db.collection('users')
+ 
+        var Count=ref.where("role","==" ,"3")
+ 
+        Count.get().then((querySnapshot)=>{
+            this.setState({
+                mobilepaymentno:querySnapshot.size
+            })
+            console.log(querySnapshot.size)
+            querySnapshot.forEach(doc=>{
+                console.log(doc.data())
+            }).catch(error=>{
+                console.log(error)
+            })
+ 
+        })
+ 
+      
+        
+     }
 
     getStakeholders = () => {
 
@@ -31,10 +114,13 @@ export default class Stakeholders extends Component {
             .collection('users')
             .get()
             .then(querySnapshot => {
+             //   console.log(querySnapshot.size)
+
+              
                 querySnapshot.forEach(doc => {
 
                     const {email, fullname, geo, role, phone} = doc.data();
-                    console.log(`${doc.id} => ${doc.data()}`);
+                //    console.log(`${doc.id} => ${doc.data()}`);
 
                     stakeholders.push({
                         key: doc.id,
@@ -60,7 +146,7 @@ export default class Stakeholders extends Component {
         //stakeholderArray
         return (
             <div className="App">
-                <Dash></Dash>
+                <Dash stakeholderno={this.state.stakeholderNo}></Dash>
                 <br></br>
                 <br></br>
                 <div className="container-fluid">
@@ -146,10 +232,19 @@ export default class Stakeholders extends Component {
                                                 <br></br>
                                                 <h4>Statistics</h4>
 
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur quaerat
-                                                quo reprehenderit ipsam. Expedita omnis, delectus esse officia et provident, rem
-                                                veniam velit aspernatur distinctio quia, eius cum nostrum quo!
+                                                <div className='countsDiv col-sm-12'>
+                                                    Private Sectors <span className="badge3"> {this.state.privateSecNo}</span>
+                                                </div>
 
+                                                <div className='countsDiv col-sm-12'>
+                                                    System Admins<span className="badge3"> {this.state.adminsno}</span>
+                                                </div>
+
+                                                <div className='countsDiv col-sm-12'>
+                                                    Mobile payment providers <span className="badge3"> {this.state.mobilepaymentno}</span>
+                                                </div>
+
+                                             
                                             </div>
                                         </div>
                                     </div>

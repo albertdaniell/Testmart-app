@@ -1,8 +1,68 @@
 import React, {Component} from 'react';
 import { Redirect,Link } from 'react-router-dom'
 
+import firebase from './Firebase';
+
+var db = firebase.firestore()
+
 
 class Dash extends Component {
+
+
+    componentDidMount(){
+this. getStakeholderNo();
+this. getPatientsNo()
+
+    }
+
+    constructor(props){
+        super(props)
+
+        this.state={
+            stakeholdersno:'_',
+            patientsno:'_'
+        }
+    }
+
+
+    getStakeholderNo=()=>{
+        db
+        .collection('users')
+        .get()
+        .then(querySnapshot => {
+            console.log(querySnapshot.size)
+
+            this.setState({
+                stakeholdersno:querySnapshot.size
+            })
+        });
+    }
+
+    getPatientsNo=()=>{
+        db
+        .collection('patients')
+        .get()
+        .then(querySnapshot => {
+            console.log(querySnapshot.size)
+
+            this.setState({
+                patientsno:querySnapshot.size
+            })
+        });
+    }
+
+    getMalariaNo=()=>{
+        db
+        .collection('patients')
+        .get()
+        .then(querySnapshot => {
+            console.log(querySnapshot.size)
+
+            this.setState({
+                patientsno:querySnapshot.size
+            })
+        });
+    }
     render() {
         return (
             <div className="App">
@@ -21,7 +81,7 @@ class Dash extends Component {
                                             <i class="fas fa-chevron-right"></i>
                                         </span>
                                     </h3>
-                                    <span className='spancounter'>20</span>
+                                    <span className='spancounter'>{this.state.patientsno}</span>
                                     <br/>
                                     <br/>
 
@@ -38,7 +98,7 @@ class Dash extends Component {
                                             <i class="fas fa-chevron-right"></i>
                                         </span>
                                     </h3>
-                                    <span className='spancounter'>20</span>
+                                    <span className='spancounter'>{this.state.stakeholdersno    }</span>
                                     <br/>
                                     <br/>
 
@@ -55,7 +115,7 @@ class Dash extends Component {
                                             <i class="fas fa-chevron-right"></i>
                                         </span>
                                     </h3>
-                                    <span className='spancounter'>238</span>
+                                    <span className='spancounter'>{this.state.patientsno}</span>
                                     <br/>
                                     <br/>
 
@@ -72,7 +132,7 @@ class Dash extends Component {
                                             <i class="fas fa-chevron-right"></i>
                                         </span>
                                     </h3>
-                                    <span className='spancounter'>238</span>
+                                    <span className='spancounter'>{this.state.patientsno}</span>
                                     <br/>
                                     <br/>
 
