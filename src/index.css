@@ -21,6 +21,7 @@ code {
 
 .myPanel{
 border-radius: 7px;
+transition: .5s;
 }
 
 
@@ -34,6 +35,10 @@ border-radius: 7px;
 
 .p3{
   background-color: rgb(244, 137, 65);
+}
+
+.p4{
+  background-color: rgb(244, 217, 65);
 }
   
 .myPanel h3{
@@ -55,6 +60,16 @@ font-size: 20px;padding: 5px;
     font-size: 15px;
     margin: 10px 10px 0px 0px;
   }
+
+  .badge2{
+    background-color:rgb(244, 163, 65);
+    border-radius: 4px;
+    font-size: 15px;
+    padding:4px;
+    color:white;
+    
+   
+  }
 .logo{
   font-size: 20px;
   background-color: rgb(65, 244, 148);
@@ -64,5 +79,31 @@ font-size: 20px;padding: 5px;
 
 .mainDiv{
   background-color: white;
-padding: 10px;
+padding: 20px;
+border-radius: 10px;
+}
+
+
+.navContainer a{
+  color: white;
+  text-decoration: none;
+  transition: .5s;
+}
+
+.navContainer a:hover{
+  color: red;
+  background: red;
+}
+
+.navContainer a .myPanel:hover{
+  color: black;
+  background: #ccc;
+}
+
+.loadingImg{
+  width: 100px;
+  align-items: center;
+  text-align: center;
+  margin: 0px;
+  margin-left:250px;
 }

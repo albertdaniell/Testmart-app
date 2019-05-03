@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { Redirect,Link } from 'react-router-dom'
+
 
 class Dash extends Component {
     render() {
@@ -7,10 +9,12 @@ class Dash extends Component {
                 <div className="container-fluid navContainer">
 
                     <div className="col-row">
-                   
+
                         <div className="col-sm-12">
 
-                            <div className="col-sm-3 " id='myPanel'>
+                        <Link to ='/'>
+                        
+                        <div className="col-sm-3 " id='myPanel'>
                                 <div className="col-sm-12 myPanel p1">
                                     <h3>Patients
                                         <span className="pull-right">
@@ -23,8 +27,11 @@ class Dash extends Component {
 
                                 </div>
                             </div>
+                        </Link>
 
-                            <div className="col-sm-3" id='myPanel'>
+                          <Link to='/stakeholders'>
+                          
+                          <div className="col-sm-3" id='myPanel'>
                                 <div className="col-sm-12 myPanel p2">
                                     <h3>Stakeholders
                                         <span className="pull-right">
@@ -37,11 +44,13 @@ class Dash extends Component {
 
                                 </div>
                             </div>
+                          </Link>
 
-                            <div className="col-sm-3" id='myPanel'>
+                         <Link to ='/malaria'>
+                         <div className="col-sm-3" id='myPanel'>
                                 <div className="col-sm-12 myPanel p3">
                                     <h3>
-                                        - Malaria
+                                        Malaria
                                         <span className="pull-right">
                                             <i class="fas fa-chevron-right"></i>
                                         </span>
@@ -52,12 +61,13 @@ class Dash extends Component {
 
                                 </div>
                             </div>
+                         </Link>
 
-
-                            <div className="col-sm-3" id='myPanel'>
-                                <div className="col-sm-12 myPanel p3">
+                       <Link to='/mRDT'>
+                       <div className="col-sm-3" id='myPanel'>
+                                <div className="col-sm-12 myPanel p4">
                                     <h3>
-                                        RDT Tests
+                                        RDT Tests /ACT
                                         <span className="pull-right">
                                             <i class="fas fa-chevron-right"></i>
                                         </span>
@@ -68,8 +78,9 @@ class Dash extends Component {
 
                                 </div>
                             </div>
+                       </Link>
                         </div>
-                      
+
                     </div>
                 </div>
             </div>
