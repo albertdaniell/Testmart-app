@@ -46,12 +46,21 @@ font-size: 20px;padding: 5px;
 
   }
 
+  .myPanel img{
+    width:50px;
+    margin-bottom: 10px;
+  }
+
   .myPanel .spancounter{
     padding:5px;
     padding-bottom: 0px;
     font-size: 30px;
     color:white;
     
+  }
+
+  #stakeholdericon{
+    width:90px;
   }
 
   .badge{

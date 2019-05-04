@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import { Redirect,Link } from 'react-router-dom'
 
 import firebase from './Firebase';
+import malariaicon from '../assets/malaria.png'
+import patienticon from '../assets/patient.png'
+import stakeicon from '../assets/stakeholders.png'
+import testicon from '../assets/test.png'
 
 var db = firebase.firestore()
 
@@ -82,6 +86,7 @@ this. getPatientsNo()
                                         </span>
                                     </h3>
                                     <span className='spancounter'>{this.state.patientsno}</span>
+                                    <img className='pull-right' src={patienticon} alt=""/>
                                     <br/>
                                     <br/>
 
@@ -99,6 +104,8 @@ this. getPatientsNo()
                                         </span>
                                     </h3>
                                     <span className='spancounter'>{this.state.stakeholdersno    }</span>
+                                    <img id='stakeholdericon' className='pull-right stakeholdericon' src={stakeicon} alt=""/>
+
                                     <br/>
                                     <br/>
 
@@ -116,6 +123,8 @@ this. getPatientsNo()
                                         </span>
                                     </h3>
                                     <span className='spancounter'>{this.state.patientsno}</span>
+                                    <img className='pull-right' src={malariaicon} alt=""/>
+
                                     <br/>
                                     <br/>
 
@@ -133,6 +142,8 @@ this. getPatientsNo()
                                         </span>
                                     </h3>
                                     <span className='spancounter'>{this.state.patientsno}</span>
+                                    <img className='pull-right' src={testicon} alt=""/>
+
                                     <br/>
                                     <br/>
 

@@ -137,7 +137,7 @@ export default class Stakeholders extends Component {
             return 0;
         }
 
-        if(this.state.role == ''){
+        if(this.state.role === ''){
             this.setState({error: true, success:false, message: 'Please choose a role'})
 
             this.setState({showCreatebtn: true})
@@ -145,7 +145,7 @@ export default class Stakeholders extends Component {
             return 0;
         }
 
-        if (this.state.phone == '') {
+        if (this.state.phone === '') {
 
             this.setState({error: true, success:false, message: 'Phone number cannot be empty'})
 
@@ -154,7 +154,7 @@ export default class Stakeholders extends Component {
             return 0;
         }
 
-        if (this.state.showGeoInput == true && this.state.geo_coordinates === '') {
+        if (this.state.showGeoInput === true && this.state.geo_coordinates === '') {
 
             this.setState({error: true, success:false, message: 'Geo Location cannot be empty'})
 

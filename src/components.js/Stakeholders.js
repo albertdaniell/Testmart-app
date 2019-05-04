@@ -193,7 +193,7 @@ export default class Stakeholders extends Component {
                                                                     } else if (stakeholder.role == 2) {
                                                                         StakeRole = 'Private sector'
 
-                                                                    } else if (stakeholder.role == 2) {
+                                                                    } else if (stakeholder.role == 3) {
                                                                         StakeRole = 'Mobile payment provider'
 
                                                                     } else {
@@ -233,15 +233,15 @@ export default class Stakeholders extends Component {
                                                 <h4>Statistics</h4>
 
                                                 <div className='countsDiv col-sm-12'>
-                                                    Private Sectors <span className="badge3"> {this.state.privateSecNo}</span>
+                                                    Private Sectors <span className="badge3 pull-right"> {this.state.privateSecNo}</span>
                                                 </div>
 
                                                 <div className='countsDiv col-sm-12'>
-                                                    System Admins<span className="badge3"> {this.state.adminsno}</span>
+                                                    System Admins<span className="badge3 pull-right"> {this.state.adminsno}</span>
                                                 </div>
 
                                                 <div className='countsDiv col-sm-12'>
-                                                    Mobile payment providers <span className="badge3"> {this.state.mobilepaymentno}</span>
+                                                    Mobile payment providers <span className="badge3 pull-right"> {this.state.mobilepaymentno}</span>
                                                 </div>
 
                                              
