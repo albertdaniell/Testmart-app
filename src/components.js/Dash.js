@@ -16,6 +16,7 @@ class Dash extends Component {
     componentDidMount(){
 this. getStakeholderNo();
 this. getPatientsNo()
+this.getmRDT()
 
     }
 
@@ -24,7 +25,8 @@ this. getPatientsNo()
 
         this.state={
             stakeholdersno:'_',
-            patientsno:'_'
+            patientsno:'_',
+            mrdt:'_'
         }
     }
 
@@ -66,6 +68,35 @@ this. getPatientsNo()
                 patientsno:querySnapshot.size
             })
         });
+    }
+
+    getmRDT=()=>{
+        var ref = db.collection("patients")
+        ref.get()
+        .then(snapShot=>{
+            snapShot.forEach(doc=>{
+                console.log(doc.id)
+
+                var ref2=ref.doc(doc.id).collection('mrdt')
+
+                ref2.where("rdt_test","==",true).get().then((snapShot2)=>{
+                   //console.log(snap2) 
+
+                  
+
+                   snapShot2.forEach((doc2)=>{
+                    console.log(snapShot2.size)
+
+                    this.setState({
+                        mrdt:snapShot2.size
+                    })
+                       console.log("heheh" + snapShot2.size)
+                     //  console.log(doc2.data().rdt_test)
+                   })
+                })
+            })
+        })
+
     }
     render() {
         return (
@@ -141,7 +172,7 @@ this. getPatientsNo()
                                             <i class="fas fa-chevron-right"></i>
                                         </span>
                                     </h3>
-                                    <span className='spancounter'>{this.state.patientsno}</span>
+                                    <span className='spancounter'>{this.state.mrdt}</span>
                                     <img className='pull-right' src={testicon} alt=""/>
 
                                     <br/>

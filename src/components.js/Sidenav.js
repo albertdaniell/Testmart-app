@@ -1,7 +1,21 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
-
+import firebase from './Firebase';
+var db = firebase.firestore();
 export default class Sidenav extends Component {
+
+    componentDidMount(){
+
+    }
+
+  
+    constructor(props){
+        super(props)
+        this.state={
+            notification:this.props.notification
+
+        }
+    }
     render() {
         return (
             <div className="App">
@@ -11,6 +25,12 @@ export default class Sidenav extends Component {
                             <span className="logo">Testmart App</span>
                             <br/><br/>
                             <ul class="list-group">
+                            <li class="list-group-item">
+                                    <p>Notifications
+                                        <br/>
+                                        <span>{this.state.notification}</span>
+                                    </p>
+                                </li>
                                 <li class="list-group-item">
                                     <p>Logged in as
                                         <br/>
@@ -18,6 +38,7 @@ export default class Sidenav extends Component {
                                             Albertagoya@gmail.com</span>
                                     </p>
                                 </li>
+                                
                                 <li className='list-group-item'>
 
                                 <Link to ='/addStakeholder'>Add Stakeholder</Link>

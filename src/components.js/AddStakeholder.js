@@ -3,16 +3,26 @@ import Dash from './Dash'
 import Sidenav from './Sidenav'
 import {Link} from 'react-router-dom'
 
-
-
 // Initialize Firebase
 import firebase from './Firebase';
 var db = firebase.firestore();
 export default class Stakeholders extends Component {
 
+    notificationFn = () => {
+        db
+            .collection('users')
+            .onSnapshot(doc => {
+                this.setState({notification: 'A user was added into the system'})
+
+                console.log("Current data: ", doc.data());
+
+            })
+    }
+
     constructor(props) {
         super(props)
         this.state = {
+            notification: '',
             role: '',
             fullname: '',
             email: '',
@@ -70,23 +80,17 @@ export default class Stakeholders extends Component {
         this.setState({geo_coordinates: event.target.value})
     }
 
-    addToFirestore=()=>{
-        db.collection("users").add({
-            fullname:this.state.fullname,
-            email:this.state.email,
-            phone:this.state.phone,
-            role:this.state.role,
-            geo:this.state.geo_coordinates,
-            
-        }).then(docRef=>{
-            console.log("Document written with ID: ", docRef.id);
+    addToFirestore = () => {
+        db
+            .collection("users")
+            .add({fullname: this.state.fullname, email: this.state.email, phone: this.state.phone, role: this.state.role, geo: this.state.geo_coordinates})
+            .then(docRef => {
+                console.log("Document written with ID: ", docRef.id);
 
-        }).catch(error=>{
-            this.setState({
-                error:true,
-                message:error.message
             })
-        })
+            .catch(error => {
+                this.setState({error: true, message: error.message})
+            })
     }
 
     firebaseCreateAcc = () => {
@@ -94,12 +98,14 @@ export default class Stakeholders extends Component {
             .auth()
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then((res) => {
-                this. addToFirestore()
+                this.addToFirestore()
 
                 this.setState({
                     success: true,
                     message: 'Successfully registered a user with the email' + this.state.email
                 })
+
+                this.notificationFn()
 
                 setTimeout(() => {
 
@@ -130,15 +136,15 @@ export default class Stakeholders extends Component {
         this.setState({showCreatebtn: false})
 
         if (this.state.fullname === '' || this.state.email === '' || this.state.password === '') {
-            this.setState({error: true, success:false ,message: 'Please fill in stakeholder demographics'})
+            this.setState({error: true, success: false, message: 'Please fill in stakeholder demographics'})
 
             this.setState({showCreatebtn: true})
 
             return 0;
         }
 
-        if(this.state.role === ''){
-            this.setState({error: true, success:false, message: 'Please choose a role'})
+        if (this.state.role === '') {
+            this.setState({error: true, success: false, message: 'Please choose a role'})
 
             this.setState({showCreatebtn: true})
 
@@ -147,7 +153,7 @@ export default class Stakeholders extends Component {
 
         if (this.state.phone === '') {
 
-            this.setState({error: true, success:false, message: 'Phone number cannot be empty'})
+            this.setState({error: true, success: false, message: 'Phone number cannot be empty'})
 
             this.setState({showCreatebtn: true})
 
@@ -156,7 +162,7 @@ export default class Stakeholders extends Component {
 
         if (this.state.showGeoInput === true && this.state.geo_coordinates === '') {
 
-            this.setState({error: true, success:false, message: 'Geo Location cannot be empty'})
+            this.setState({error: true, success: false, message: 'Geo Location cannot be empty'})
 
             this.setState({showCreatebtn: true})
 
@@ -180,7 +186,7 @@ export default class Stakeholders extends Component {
 
                         <div className="col-md-12">
                             <div className="col-sm-3">
-                                <Sidenav></Sidenav>
+                                <Sidenav notification={this.state.notification}></Sidenav>
                             </div>
                             <div className="col-sm-9 mainDiv">
                                 <div className="App">
@@ -250,7 +256,7 @@ export default class Stakeholders extends Component {
                                                 <h5>Other info</h5>
                                                 <div className="form-group">
                                                     <select onChange={this.getrole} class="form-control" id="sel1">
-                                                     <option value=''>Choose the role</option>
+                                                        <option value=''>Choose the role</option>
                                                         <option value={1}>Admin</option>
                                                         <option value={2}>Private Retail Sector</option>
                                                         <option value={3}>Bank/ Mobile Payment provider</option>
