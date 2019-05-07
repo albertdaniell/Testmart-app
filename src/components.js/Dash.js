@@ -17,6 +17,7 @@ class Dash extends Component {
 this. getStakeholderNo();
 this. getPatientsNo()
 this.getmRDT()
+this. getMalariaNo()
 
     }
 
@@ -26,7 +27,8 @@ this.getmRDT()
         this.state={
             stakeholdersno:'_',
             patientsno:'_',
-            mrdt:'_'
+            mrdt:'_',
+            malariaNo:'_'
         }
     }
 
@@ -58,44 +60,21 @@ this.getmRDT()
     }
 
     getMalariaNo=()=>{
-        db
-        .collection('patients')
-        .get()
-        .then(querySnapshot => {
-            console.log(querySnapshot.size)
+        var ref = db.collection("mrdt").where("test1_result","==","Positive").where("test1_result","==","Positive")
+        ref.get()
+        .then(snapShot=>{
+
+            console.log("mrdt"+snapShot.size)
 
             this.setState({
-                patientsno:querySnapshot.size
+                malariaNo:snapShot.size
             })
-        });
+           
+        })
     }
 
     getmRDT=()=>{
-        var ref = db.collection("patients")
-        ref.get()
-        .then(snapShot=>{
-            snapShot.forEach(doc=>{
-                console.log(doc.id)
-
-                var ref2=ref.doc(doc.id).collection('mrdt')
-
-                ref2.where("rdt_test","==",true).get().then((snapShot2)=>{
-                   //console.log(snap2) 
-
-                  
-
-                   snapShot2.forEach((doc2)=>{
-                    console.log(snapShot2.size)
-
-                    this.setState({
-                        mrdt:snapShot2.size
-                    })
-                       console.log("heheh" + snapShot2.size)
-                     //  console.log(doc2.data().rdt_test)
-                   })
-                })
-            })
-        })
+      
 
     }
     render() {
@@ -153,7 +132,7 @@ this.getmRDT()
                                             <i class="fas fa-chevron-right"></i>
                                         </span>
                                     </h3>
-                                    <span className='spancounter'>{this.state.patientsno}</span>
+                                    <span className='spancounter'>{this.state.malariaNo}</span>
                                     <img className='pull-right' src={malariaicon} alt=""/>
 
                                     <br/>

@@ -2,7 +2,59 @@ import React ,{Component} from 'react';
 import Dash from './Dash'
 import Sidenav from './Sidenav'
 
+import firebase from './Firebase';
+import loadingimage from '../assets/loadingjelly.gif'
+
+var db = firebase.firestore()
+
+
 export default class Malaria extends Component {
+
+    componentDidMount(){
+        this.getMalariaPatiensts()
+}
+
+
+    constructor(props){
+        super(props)
+
+        this.state={
+            patients:[],
+            patientsLoaded:false
+        }
+    }
+
+getMalariaPatiensts=()=>{
+    const patients = [];
+    var ref = db.collection("mrdt").where("test1_result","==","Positive").where("test1_result","==","Positive")
+
+        .get()
+        .then(querySnapshot => {
+           console.log("mrdtt"+querySnapshot.size)
+
+          
+            querySnapshot.forEach(doc => {
+
+                const {patient_name, private_sector, patient_id} = doc.data();
+            //    console.log(`${doc.id} => ${doc.data()}`);
+
+                patients.push({
+                    key: doc.id,
+                    doc,
+                  private_sector,
+                  patient_name,
+                  patient_id,
+
+                })
+                this.setState({stakeholdersLoaded: true})
+
+                this.setState({patients,patientsLoaded:true})
+
+            })
+        }).catch(error=>
+            console.log(error))
+}
+
 render(){
   return (
   <div className="App">
@@ -25,57 +77,28 @@ render(){
          <div className="row">
              <div className="col-sm-8">
 
-                 <table className='table'>
-                    <thead>
-                    <tr>
-                         <th>Heading 1</th>
-                         <th>Heading 2</th>
-                         <th>Action</th>
-                     </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Dummy data</td>
-                        <td>Dummy data</td>
-                        
-                        
-                        </tr>
+             {!this.state.patientsLoaded
+                                                    ? <img className='loadingImg' src={loadingimage} alt=""/>
+                                                    : null
+}
 
-                        <tr><td>Dummy data</td>
-                        <td>Dummy data</td>
-                        
-                        
-                        </tr>
+               <divc className='mydiv'>
+               {
+                     this.state.patients.map((patient)=>(
+                         <div  className='myList' key={patient.patient_id}>
+                             <span className="push-right"><i class="fas fa-plus-circle"></i></span>
+                             <br/>
 
-                        <tr><td>Dummy data</td>
-                        <td>Dummy data</td>
-                        
-                        
-                        </tr>
-
-                        <tr><td>Dummy data</td>
-                        <td>Dummy data</td>
-                        
-                        
-                        </tr>
-
-                        <tr><td>Dummy data</td>
-                        <td>Dummy data</td>
-                        
-                        
-                        </tr>
-
-                        <tr><td>Dummy data</td>
-                        <td>Dummy data</td>
-                        
-                        
-                        </tr>
-                    </tbody>
-                 </table>
+                             <span id='myListname'>{patient.patient_name}</span>
+                             <p>{patient.private_sector}</p>
+                         </div>
+                     ))
+                 }
+               </divc>
              </div>
              <div className="col-sm-4">
                  <h4>Statistics</h4>
-                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur quaerat quo reprehenderit ipsam. Expedita omnis, delectus esse officia et provident, rem veniam velit aspernatur distinctio quia, eius cum nostrum quo!
-
+<p>This page lists all tests on patients which turned out to positive</p>
              </div>
          </div>
      </div>

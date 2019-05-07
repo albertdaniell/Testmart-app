@@ -74,8 +74,8 @@ render(){
              </div>
              <div className="col-sm-4">
                  <h4>Statistics</h4>
-                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur quaerat quo reprehenderit ipsam. Expedita omnis, delectus esse officia et provident, rem veniam velit aspernatur distinctio quia, eius cum nostrum quo!
-
+                
+<p>This page lists all patients who were tested for malaria and the ones who were given ACT</p>
              </div>
          </div>
      </div>

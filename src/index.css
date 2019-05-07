@@ -139,3 +139,38 @@ border-radius: 10px;
   border-left-color: red;
   border-left:10px solid black;
 }
+
+.myList:hover {
+  background-color: aquamarine;
+  background-color: rgba(255, 108, 169, 0.822);
+  border-left:5px solid rgba(228, 0, 95, 0.822);
+  cursor: pointer;
+}
+
+.myList {
+  min-width: 250px;
+  max-width: 250px;
+  overflow-wrap: break-word;
+  grid-auto-flow: column;
+  display: inline-block;
+  background-color: rgba(240, 145, 184, 0.822);
+  margin: 10px;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+ 
+
+}
+
+
+
+#myListname{
+  font-size: 20
+}
+
+.fa-plus-circle{
+  color: red;
+  font-size: 20
+}

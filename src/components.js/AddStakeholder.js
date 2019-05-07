@@ -9,20 +9,34 @@ var db = firebase.firestore();
 export default class Stakeholders extends Component {
 
     notificationFn = () => {
-        db
+        var notifi=db
             .collection('users')
-            .onSnapshot(doc => {
-                this.setState({notification: 'A user was added into the system'})
-
-                console.log("Current data: ", doc.data());
-
+            .onSnapshot(()=>{
+                console.log(this.state.notification)
             })
+
+
+
+
+
+
+            // .onSnapshot(doc => {
+            //   //  this.setState({notification: 'A user was added into the system'})
+
+            //   console.log("Current data:");
+
+            // }).then(()=>{
+       
+            // })
+
+
+            
     }
 
     constructor(props) {
         super(props)
         this.state = {
-            notification: '',
+            notification: 'Notifications',
             role: '',
             fullname: '',
             email: '',
@@ -40,6 +54,12 @@ export default class Stakeholders extends Component {
 
     componentWillUpdate() {
         //  this.geoLocFn()
+    }
+
+    componentDidMount(){
+        setInterval(()=>{
+            this.notificationFn()
+        },10000)
     }
 
     geoLocFn = () => {}
@@ -81,6 +101,8 @@ export default class Stakeholders extends Component {
     }
 
     addToFirestore = () => {
+
+    
         db
             .collection("users")
             .add({fullname: this.state.fullname, email: this.state.email, phone: this.state.phone, role: this.state.role, geo: this.state.geo_coordinates})
@@ -132,6 +154,8 @@ export default class Stakeholders extends Component {
 
     addStakeFn = (event) => {
         event.preventDefault()
+
+        
 
         this.setState({showCreatebtn: false})
 

@@ -12,8 +12,7 @@ export default class Sidenav extends Component {
     constructor(props){
         super(props)
         this.state={
-            notification:this.props.notification
-
+            notification:'hehee'
         }
     }
     render() {
@@ -26,9 +25,9 @@ export default class Sidenav extends Component {
                             <br/><br/>
                             <ul class="list-group">
                             <li class="list-group-item">
-                                    <p>Notifications
+                                    <p>
                                         <br/>
-                                        <span>{this.state.notification}</span>
+                                        <span>{this.props.notification}</span>
                                     </p>
                                 </li>
                                 <li class="list-group-item">
